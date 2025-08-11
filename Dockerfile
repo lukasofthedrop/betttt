@@ -2,7 +2,7 @@
 FROM composer:2 as vendor
 WORKDIR /app
 COPY database/ /app/database/
-COPY composer.json composer.lock /app/
+COPY composer.json /app/
 RUN composer install --no-interaction --no-plugins --no-scripts --no-dev --prefer-dist --ignore-platform-reqs
 
 # Estágio 2: Construir assets de frontend
