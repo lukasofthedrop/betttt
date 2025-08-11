@@ -1,0 +1,11 @@
+# Configuração para forçar o ambiente de build da Railway (Nixpacks)
+[phases.setup]
+nixPkgs = [
+    "php81",
+    "php81Extensions.curl",
+    "php81Extensions.intl",
+    "php81Extensions.libxml",
+    "php81Extensions.simplexml",
+    "php81Extensions.zip",
+    "php81Extensions.pdo_mysql" # Adicionando o driver do MySQL explicitamente
+]
