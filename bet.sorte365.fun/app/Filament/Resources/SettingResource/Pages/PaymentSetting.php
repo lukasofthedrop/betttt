@@ -4,6 +4,7 @@ namespace App\Filament\Resources\SettingResource\Pages;
 
 use App\Filament\Resources\SettingResource;
 use App\Models\Setting;
+use App\Helpers\Core;
 use AymanAlhattami\FilamentPageWithSidebar\Traits\HasPageSidebar;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Section;
@@ -43,7 +44,7 @@ class PaymentSetting extends Page implements HasForms
 
     public function mount(): void
     {
-        $setting = Setting::first();
+        $setting = Core::getSetting();
         $this->record = $setting;
         $this->form->fill($setting->toArray());
     }
@@ -63,6 +64,7 @@ class PaymentSetting extends Page implements HasForms
             $setting = Setting::find($this->record->id);
 
             if ($setting->update($this->data)) {
+                Core::clearSettingsCache();
                 Cache::put('setting', $setting);
 
                 Notification::make()

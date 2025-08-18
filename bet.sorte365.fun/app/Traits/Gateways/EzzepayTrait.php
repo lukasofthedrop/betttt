@@ -191,7 +191,7 @@ trait EzzepayTrait
 
             $wallet = Wallet::where('user_id', $transaction->user_id)->first();
             if (!empty($wallet)) {
-                $setting = Setting::first();
+                $setting = \App\Helpers\Core::getSetting();
 
                 /// verifica se é o primeiro deposito, verifica as transações, somente se for transações concluidas
                 $checkTransactions = Transaction::where('user_id', $transaction->user_id)

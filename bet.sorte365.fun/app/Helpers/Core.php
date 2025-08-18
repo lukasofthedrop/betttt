@@ -30,7 +30,7 @@ class Core
         }
 
         // Caso contrário, usar o gateway padrão das configurações
-        $setting = Setting::first();
+        $setting = self::getSetting();
         return $setting->default_gateway ?? 'suitpay';
     }
 
@@ -92,7 +92,7 @@ class Core
     public static function payWithRollover($userId, $changeBonus, $win, $bet, $type): void
     {
         $wallet = Wallet::where('user_id', $userId)->first();
-        $setting = Setting::first();
+        $setting = self::getSetting();
 
         if (!empty($wallet)) {
             if ($setting->disable_rollover) {
@@ -689,6 +689,26 @@ class Core
             return $amount;
         }
         return $amount;
+    }
+
+    /**
+     * Get cached settings to avoid repeated database queries
+     * @return Setting|null
+     */
+    public static function getSetting()
+    {
+        return \Cache::remember('app_settings', 3600, function () {
+            return Setting::first();
+        });
+    }
+
+    /**
+     * Clear settings cache (call this when settings are updated)
+     * @return void
+     */
+    public static function clearSettingsCache()
+    {
+        \Cache::forget('app_settings');
     }
 
     /**

@@ -63,7 +63,7 @@ class Settings extends Page implements HasForms
      */
     public function mount(): void
     {
-        $this->setting = Setting::first();
+        $this->setting = \App\Helpers\Core::getSetting();
         $this->form->fill($this->setting->toArray());
     }
 
@@ -263,7 +263,7 @@ class Settings extends Page implements HasForms
             }
 
 
-            $setting = Setting::first();
+            $setting = \App\Helpers\Core::getSetting();
 
             if(!empty($setting)) {
 
@@ -299,7 +299,7 @@ class Settings extends Page implements HasForms
 
                 if($setting->update($this->data)) {
 
-                    Cache::put('setting', $setting);
+                    \App\Helpers\Core::clearSettingsCache();
 
                     Notification::make()
                         ->title('ACESSE VSALATIEL.COM')

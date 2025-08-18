@@ -40,7 +40,7 @@ class SettingResource extends Resource
      */
     public function mount(): void
     {
-        $this->record = Setting::first();
+        $this->record = \App\Helpers\Core::getSetting();
     }
 
     /**
