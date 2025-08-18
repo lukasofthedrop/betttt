@@ -1,0 +1,34 @@
+{
+  "name": "bet.sorte365.fun",
+  "version": "1.0.0",
+  "description": "Casino online platform",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "autoprefixer": "^10.4.14",
+    "axios": "^1.1.2",
+    "javascript-obfuscator": "^4.0.0",
+    "laravel-vite-plugin": "^0.8.0",
+    "laravel-vue-i18n": "^2.0.0",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.2.0",
+    "vite": "^4.0.0",
+    "vue": "^3.2.0"
+  },
+  "dependencies": {
+    "@headlessui/vue": "^1.7.0",
+    "@heroicons/vue": "^2.0.0",
+    "@inertiajs/vue3": "^1.0.0",
+    "@tailwindcss/forms": "^0.5.0",
+    "@tailwindcss/typography": "^0.5.0",
+    "alpinejs": "^3.0.0",
+    "pusher-js": "^8.0.0",
+    "sweetalert2": "^11.0.0"
+  }
+}
