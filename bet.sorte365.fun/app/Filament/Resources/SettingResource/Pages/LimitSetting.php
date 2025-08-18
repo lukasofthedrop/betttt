@@ -56,7 +56,7 @@ class LimitSetting extends Page implements HasForms
      */
     public function mount(): void
     {
-        $setting = Setting::first();
+        $setting = \App\Helpers\Core::getSetting();
         $this->record = $setting;
         $this->form->fill($setting->toArray());
     }
@@ -80,6 +80,7 @@ class LimitSetting extends Page implements HasForms
             $setting = Setting::find($this->record->id);
 
             if ($setting->update($this->data)) {
+                \App\Helpers\Core::clearSettingsCache();
                 Cache::put('setting', $setting);
 
                 Notification::make()

@@ -59,7 +59,7 @@ class DefaultSetting extends Page implements HasForms
     public function mount(): void
     {   
         $envs = DotenvEditor::load(base_path('.env'));
-        $setting = Setting::first();
+        $setting = \App\Helpers\Core::getSetting();
         $this->record = $setting;
         $this->record->url_env = $envs->getValue("FILAMENT_BASE_URL");
         $this->form->fill($setting->toArray());
@@ -137,6 +137,7 @@ class DefaultSetting extends Page implements HasForms
             $envs->save();
 
             if($setting->update($this->data)) {
+                \App\Helpers\Core::clearSettingsCache();
                 Cache::put('setting', $setting);
 
                 Notification::make()

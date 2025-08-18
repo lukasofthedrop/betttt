@@ -142,7 +142,7 @@ class WalletController extends Controller
 
     public function requestWithdrawal(Request $request)
     {
-        $setting = Setting::first();
+        $setting = Core::getSetting();
 
         if (auth('api')->check()) {
 
